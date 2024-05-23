@@ -15,4 +15,4 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-[![Zeyu-Chen's GitHub | Languages Over Time](https://stats.quine.sh/Zeyu-Chen/languages-over-time?theme=dark)](https://quine.sh?utm_source=widgets&utm_campaign=Zeyu-Chen)
+![GitHub账户最常用语言](https://github-stats.ubrong.com/api/top-langs/?username=zeyu-chen&layout=compact&theme=tokyonight)
