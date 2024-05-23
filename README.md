@@ -17,4 +17,4 @@ Here are some ideas to get you started:
 
 ![GitHub账户信息统计](https://github-stats.ubrong.com/api?username=zeyu-chen&show_icons=true&theme=tokyonight)
 
-![GitHub账户最常用语言](https://github-stats.ubrong.com/api/top-langs/?username=zeyu-chen&layout=default&theme=tokyonight)
+![GitHub账户最常用语言](https://github-stats.ubrong.com/api/top-langs/?username=zeyu-chen&layout=compact&theme=tokyonight)
