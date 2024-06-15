@@ -3,7 +3,7 @@
 Hello! I'm Zeyu, an innovative engineer with over 3 years of experience in both academia and industry. I specialize in front-end development, full-stack development, and machine learning. I am proficient in JavaScript, TypeScript, React.js, Next.js, Tailwind CSS, and other modern web technologies.
 
 
-### Languages
+### Language
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=white)
