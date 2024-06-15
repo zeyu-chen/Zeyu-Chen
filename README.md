@@ -8,14 +8,16 @@ Hello! I'm Zeyu, an innovative engineer with over 3 years of experience in both 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-![C++](https://img.shields.io/badge/C++-00599C?logo=C&logoColor=white)
-
+![C++](https://img.shields.io/badge/C++-00599C?logo=Cplusplus&logoColor=white)
+![Shell](https://img.shields.io/badge/Shell-FFD500C?logo=Shell&logoColor=white)
 
 ### Frontend
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=Next.js&logoColor=white)
 ![React.js](https://img.shields.io/badge/React.js-blue?logo=React&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=Tailwind%20CSS&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-007FFF?logo=MUI&logoColor=white)
+![Shadcn UI](https://img.shields.io/badge/Shadcn%20UI-000000?logo=ShadcnUI&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=HTML5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=CSS3&logoColor=white)
 ![Redux](https://img.shields.io/badge/Redux-764ABC?logo=Redux&logoColor=white)
