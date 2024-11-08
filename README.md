@@ -17,6 +17,6 @@ analysis. I'm passionate about leveraging cutting-edge technologies to solve rea
 | Tools          | ![Git](https://img.shields.io/badge/Git-F05032) ![Linux](https://img.shields.io/badge/Linux-000000) ![Docker](https://img.shields.io/badge/Docker-2496ED) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5)                                                                                                                                                                   |
 | Certifications | ![AWS SAA](https://img.shields.io/badge/AWS%20Solutions%20Architect%20Associate-232F3E) ![Google Data Analytics](https://img.shields.io/badge/Google%20Data%20Analytics-4285F4)                                                                                                                                                                                                           |
 
-<!-- ![GitHub账户信息统计](https://github-stats.ubrong.com/api?username=zeyu-chen&show_icons=true&theme=tokyonight)
+<!-- ![GitHub账户信息统计](https://github-stats.ubrong.com/api?username=zeyu-chen&show_icons=true&theme=tokyonight) -->
 
-![GitHub账户最常用语言](https://github-stats.ubrong.com/api/top-langs/?username=zeyu-chen&layout=compact&theme=tokyonight) -->
+![GitHub账户最常用语言](https://github-stats.ubrong.com/api/top-langs/?username=zeyu-chen&layout=compact&theme=tokyonight)
