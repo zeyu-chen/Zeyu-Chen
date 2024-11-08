@@ -19,4 +19,4 @@ analysis. I'm passionate about leveraging cutting-edge technologies to solve rea
 
 <!-- ![GitHub账户信息统计](https://github-stats.ubrong.com/api?username=zeyu-chen&show_icons=true&theme=tokyonight) -->
 
-![GitHub账户最常用语言](https://github-stats.ubrong.com/api/top-langs/?username=zeyu-chen&layout=compact&theme=tokyonight)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=zeyu-chen&layout=compact&theme=transparent)
