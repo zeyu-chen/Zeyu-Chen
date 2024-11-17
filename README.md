@@ -2,7 +2,7 @@
 
 Hello! I'm Zeyu, an innovative engineer with experience in both
 academia and industry. I specialize in full-stack development and data
-Engineering. I'm passionate about leveraging cutting-edge technologies to solve real-world problems.
+engineering. I'm passionate about leveraging cutting-edge technologies to solve real-world problems.
 
 ## Skills
 
