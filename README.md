@@ -18,11 +18,4 @@ Full-stack AI Engineer with 3 years of experience in AI, data, and full-stack de
 | Cloud & DevOps | ![AWS](https://img.shields.io/badge/-AWS-232F3E?style=flat) ![Azure](https://img.shields.io/badge/-Azure-0078D4?style=flat) ![Vercel](https://img.shields.io/badge/-Vercel-000000?style=flat) ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat) ![Terraform](https://img.shields.io/badge/-Terraform-7B42BC?style=flat) ![Git](https://img.shields.io/badge/-Git-F05032?style=flat) ![GitHub Actions](https://img.shields.io/badge/-GitHub%20Actions-2088FF?style=flat) ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat) |
 | Certifications | ![AWS SAA](https://img.shields.io/badge/-AWS%20Solutions%20Architect-232F3E?style=flat) ![AWS DEA](https://img.shields.io/badge/-AWS%20Data%20Engineer-232F3E?style=flat) ![Google DA](https://img.shields.io/badge/-Google%20Data%20Analytics-4285F4?style=flat) |
 
-## Awards
-
-- **APICTA 2025** - Asia-Pacific AI Solution of the Year, Top 3
-- **AIIA iAwards 2025** - National Government & Public Sector Solution, Winner
-- **AIIA iAwards 2025** - NSW Not-for-Profit / Community Solution, Winner
-- **GenAI.Works 2024** - Build with AI Hackathon, 4th Place (amongst 200+ teams)
-
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=zeyu-chen&layout=compact&theme=transparent)
