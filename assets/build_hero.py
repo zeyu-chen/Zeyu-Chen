@@ -194,7 +194,7 @@ def build(t):
       f'<tspan class="cursor" fill="{t["amber"]}" font-family="{MONO}"> ▍</tspan></text>')
 
     # Column captions
-    cap = f'font-family="{MONO}" font-size="10.5" letter-spacing="2" fill="{t["muted"]}"'
+    cap = f'font-family="{MONO}" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="{t["teal"]}"'
     a(f'<text x="80" y="{SRC_Y[0]-26}" {cap}>SOURCES</text>')
     a(f'<text x="{AGENT[0]}" y="{SRC_Y[0]-26}" text-anchor="middle" {cap}>REASON</text>')
     a(f'<text x="{PILL_X}" y="{SRC_Y[0]-26}" {cap}>ACT</text>')
