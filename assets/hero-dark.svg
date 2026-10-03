@@ -17,12 +17,12 @@
 @keyframes in{0%,1.00%{stroke-dashoffset:var(--d);opacity:0}1.50%{opacity:1}10.91%{stroke-dashoffset:-100;opacity:1}11.71%,100%{stroke-dashoffset:-100;opacity:0}}
 @keyframes toagent{0%,20.91%{stroke-dashoffset:var(--d);opacity:0}21.41%{opacity:1}26.29%{stroke-dashoffset:-100;opacity:1}27.09%,100%{stroke-dashoffset:-100;opacity:0}}
 @keyframes out{0%,30.29%{stroke-dashoffset:var(--d);opacity:0}30.79%{opacity:1}39.17%{stroke-dashoffset:-100;opacity:1}39.97%,100%{stroke-dashoffset:-100;opacity:0}}
-@keyframes back{0%,49.17%{stroke-dashoffset:var(--d);opacity:0}49.67%{opacity:1}60.17%{stroke-dashoffset:-100;opacity:1}60.97%,100%{stroke-dashoffset:-100;opacity:0}}
+@keyframes back{0%,49.17%{stroke-dashoffset:var(--d);opacity:0}49.67%{opacity:1}64.17%{stroke-dashoffset:-100;opacity:1}64.97%,100%{stroke-dashoffset:-100;opacity:0}}
 @keyframes lit{0%,9.91%{opacity:0}14.91%{opacity:1}82.00%{opacity:1}91.00%,100%{opacity:0}}
 @keyframes agentlit{0%,25.29%{opacity:0}30.29%{opacity:1}84.00%{opacity:1}93.00%,100%{opacity:0}}
 @keyframes pill{0%,38.17%{opacity:0}43.17%{opacity:1}86.00%{opacity:1}95.00%,100%{opacity:0}}
 @keyframes ring{0%,25.29%{opacity:0;transform:scale(1)}27.29%{opacity:.9;transform:scale(1)}40.29%{opacity:0;transform:scale(1.9)}100%{opacity:0}}
-@keyframes src{0%,59.17%{opacity:0}62.17%{opacity:1}72.17%,100%{opacity:0}}
+@keyframes src{0%,63.17%{opacity:0}66.17%{opacity:1}76.17%,100%{opacity:0}}
 @keyframes ants{to{stroke-dashoffset:-24}}
 @keyframes blink{0%{opacity:1}50%{opacity:0}}
 @media (prefers-reduced-motion:reduce){
