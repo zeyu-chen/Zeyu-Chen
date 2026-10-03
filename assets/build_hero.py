@@ -37,6 +37,18 @@ OUTCOMES = ["insight", "recommendation", "action"]
 OUT_Y = [MID - 66, MID, MID + 66]
 PILL_X, PILL_W, PILL_H = 860, 200, 36
 LOOP_Y = 436
+PULSE_PX = 22  # visible length of a travelling pulse, in pixels
+
+
+def cubic_len(p0, p1, p2, p3, n=64):
+    pts = [tuple((1-u)**3*a + 3*(1-u)**2*u*b + 3*(1-u)*u**2*c + u**3*d
+                 for a, b, c, d in zip(p0, p1, p2, p3)) for u in (i / n for i in range(n + 1))]
+    return sum(math.dist(pts[i], pts[i + 1]) for i in range(n))
+
+
+def dash(length):
+    """Dash size in pathLength=100 units so every pulse looks PULSE_PX long."""
+    return f"--d:{100 * PULSE_PX / length:.2f}"
 
 
 def icon(name, y, c):
@@ -75,11 +87,11 @@ def build(t):
       'and actions, and actions are written back to the source systems under governance.</desc>')
 
     a(f"""<style>
-.pulse{{fill:none;stroke-linecap:round;stroke-dasharray:8 120;stroke-dashoffset:8;opacity:0}}
+.pulse{{fill:none;stroke-linecap:round;stroke-dasharray:var(--d) 200;stroke-dashoffset:var(--d);opacity:0}}
 .in{{animation:in 10s linear infinite both}}
 .to-agent{{animation:toagent 10s linear infinite both}}
 .out{{animation:out 10s linear infinite both}}
-.back{{stroke-dasharray:4 120;stroke-dashoffset:4;animation:back 10s linear infinite both}}
+.back{{animation:back 10s linear infinite both}}
 .lit{{opacity:0;animation:lit 10s ease-in-out infinite both}}
 .agent-lit{{opacity:0;animation:agentlit 10s ease-in-out infinite both}}
 .ring{{opacity:0;transform-box:fill-box;transform-origin:center;animation:ring 10s ease-out infinite both}}
@@ -87,10 +99,10 @@ def build(t):
 .src-lit{{opacity:0;animation:src 10s ease-in-out infinite both}}
 .ants{{stroke-dasharray:5 7;animation:ants 1.4s linear infinite}}
 .cursor{{animation:blink 1.1s steps(1) infinite}}
-@keyframes in{{0%{{stroke-dashoffset:8;opacity:0}}1%{{opacity:1}}20%{{stroke-dashoffset:-100;opacity:1}}21%,100%{{stroke-dashoffset:-100;opacity:0}}}}
-@keyframes toagent{{0%,37%{{stroke-dashoffset:8;opacity:0}}38%{{opacity:1}}45%{{stroke-dashoffset:-100;opacity:1}}46%,100%{{stroke-dashoffset:-100;opacity:0}}}}
-@keyframes out{{0%,48%{{stroke-dashoffset:8;opacity:0}}49%{{opacity:1}}58%{{stroke-dashoffset:-100;opacity:1}}59%,100%{{stroke-dashoffset:-100;opacity:0}}}}
-@keyframes back{{0%,66%{{stroke-dashoffset:4;opacity:0}}67%{{opacity:1}}86%{{stroke-dashoffset:-100;opacity:1}}87%,100%{{stroke-dashoffset:-100;opacity:0}}}}
+@keyframes in{{0%{{stroke-dashoffset:var(--d);opacity:0}}1%{{opacity:1}}20%{{stroke-dashoffset:-100;opacity:1}}21%,100%{{stroke-dashoffset:-100;opacity:0}}}}
+@keyframes toagent{{0%,37%{{stroke-dashoffset:var(--d);opacity:0}}38%{{opacity:1}}45%{{stroke-dashoffset:-100;opacity:1}}46%,100%{{stroke-dashoffset:-100;opacity:0}}}}
+@keyframes out{{0%,48%{{stroke-dashoffset:var(--d);opacity:0}}49%{{opacity:1}}58%{{stroke-dashoffset:-100;opacity:1}}59%,100%{{stroke-dashoffset:-100;opacity:0}}}}
+@keyframes back{{0%,66%{{stroke-dashoffset:var(--d);opacity:0}}67%{{opacity:1}}86%{{stroke-dashoffset:-100;opacity:1}}87%,100%{{stroke-dashoffset:-100;opacity:0}}}}
 @keyframes lit{{0%,19%{{opacity:0}}25%{{opacity:1}}82%{{opacity:1}}92%,100%{{opacity:0}}}}
 @keyframes agentlit{{0%,44%{{opacity:0}}48%{{opacity:1}}84%{{opacity:1}}93%,100%{{opacity:0}}}}
 @keyframes ring{{0%,45%{{opacity:0;transform:scale(1)}}47%{{opacity:.9;transform:scale(1)}}60%{{opacity:0;transform:scale(1.9)}}100%{{opacity:0}}}}
@@ -109,7 +121,7 @@ def build(t):
 <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="{t['dots']}"/></pattern>
 <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="{t['teal']}" stop-opacity="{t['glow']}"/><stop offset="1" stop-color="{t['teal']}" stop-opacity="0"/></radialGradient>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{t['bg']}" stop-opacity="1"/><stop offset=".45" stop-color="{t['bg']}" stop-opacity="0"/></linearGradient>
-<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="{t['amber']}"/></marker>
 <clipPath id="card"><rect x="4" y="4" width="{W-8}" height="{H-8}" rx="18"/></clipPath>
 </defs>""")
@@ -146,7 +158,7 @@ def build(t):
         d = f"M200,{y} C265,{y} 275,{ty:.1f} 330,{ty:.1f}"
         a(f'<path d="{d}" fill="none" stroke="{t["faint"]}" stroke-width="1.5"/>')
         a(f'<path class="pulse in" d="{d}" pathLength="100" stroke="{t["teal"]}" stroke-width="3" '
-          f'filter="url(#glow)" style="animation-delay:{0.15*i:.2f}s"/>')
+          f'filter="url(#glow)" style="{dash(cubic_len((200, y), (265, y), (275, ty), (330, ty)))}"/>')
         a(icon(name, y, t["muted"]))
         a(f'<circle class="src-lit" cx="92" cy="{y}" r="14" fill="none" stroke="{t["amber"]}" '
           f'stroke-width="1.5" style="animation-delay:{0.12*(4-i):.2f}s"/>')
@@ -175,7 +187,8 @@ def build(t):
     # Context layer -> agent
     d = f"M{bx+bw},{MID} H{AGENT[0]-26}"
     a(f'<path d="{d}" fill="none" stroke="{t["faint"]}" stroke-width="1.5"/>')
-    a(f'<path class="pulse to-agent" d="{d}" pathLength="100" stroke="{t["teal"]}" stroke-width="3" filter="url(#glow)"/>')
+    a(f'<path class="pulse to-agent" d="{d}" pathLength="100" stroke="{t["teal"]}" stroke-width="3.5" '
+      f'filter="url(#glow)" style="{dash(AGENT[0] - 26 - bx - bw)}"/>')
 
     # Agent
     ax, ay = AGENT
@@ -195,12 +208,12 @@ def build(t):
         d = f"M{ax+26},{ay} C{ax+75},{ay} {ax+80},{y} {PILL_X},{y}"
         a(f'<path d="{d}" fill="none" stroke="{t["faint"]}" stroke-width="1.5"/>')
         a(f'<path class="pulse out" d="{d}" pathLength="100" stroke="{c}" stroke-width="3" '
-          f'filter="url(#glow)" style="animation-delay:{0.3*i:.1f}s"/>')
+          f'filter="url(#glow)" style="{dash(cubic_len((ax+26, ay), (ax+75, ay), (ax+80, y), (PILL_X, y)))}"/>')
         px, py = PILL_X, y - PILL_H / 2
         a(f'<rect x="{px}" y="{py}" width="{PILL_W}" height="{PILL_H}" rx="18" fill="{t["node"]}" '
           f'stroke="{c if is_action else t["stroke"]}" stroke-width="1.4"/>')
         a(f'<rect class="pill-lit" x="{px}" y="{py}" width="{PILL_W}" height="{PILL_H}" rx="18" '
-          f'fill="{c}" fill-opacity="0.14" stroke="{c}" stroke-width="1.6" style="animation-delay:{0.3*i:.1f}s"/>')
+          f'fill="{c}" fill-opacity="0.14" stroke="{c}" stroke-width="1.6"/>')
         a(f'<circle cx="{px+20}" cy="{y}" r="4" fill="{c}"/>')
         a(f'<text x="{px+34}" y="{y+4.5}" font-family="{MONO}" font-size="13" '
           f'fill="{t["amber"] if is_action else t["text"]}" font-weight="{600 if is_action else 400}">{name}</text>')
@@ -211,7 +224,10 @@ def build(t):
          f"H120 C92,{LOOP_Y} 92,{LOOP_Y} 92,{SRC_Y[-1]+18}")
     a(f'<path class="ants" d="{d}" fill="none" stroke="{t["amber"]}" stroke-opacity="0.55" stroke-width="1.4" '
       f'marker-end="url(#arrow)"/>')
-    a(f'<path class="pulse back" d="{d}" pathLength="100" stroke="{t["amber"]}" stroke-width="3" filter="url(#glow)"/>')
+    back_len = (cubic_len((PILL_X+PILL_W, ry), (PILL_X+PILL_W+50, ry), (PILL_X+PILL_W+50, LOOP_Y), (PILL_X+PILL_W, LOOP_Y))
+                + PILL_X + PILL_W - 120 + cubic_len((120, LOOP_Y), (92, LOOP_Y), (92, LOOP_Y), (92, SRC_Y[-1]+18)))
+    a(f'<path class="pulse back" d="{d}" pathLength="100" stroke="{t["amber"]}" stroke-width="3" '
+      f'filter="url(#glow)" style="{dash(back_len)}"/>')
     lx = 600
     a(f'<text x="{lx}" y="{LOOP_Y-8}" text-anchor="middle" font-family="{MONO}" font-size="11.5" '
       f'letter-spacing="1" fill="{t["amber"]}">governed write-back · audited</text>')

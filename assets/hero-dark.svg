@@ -2,11 +2,11 @@
 <title id="title">Zeyu Chen: building the enterprise context layer</title>
 <desc id="desc">Data sources such as telemetry, documents, databases, APIs and SaaS flow into an ontology-based context layer. AI agents reason over it to produce insights, recommendations and actions, and actions are written back to the source systems under governance.</desc>
 <style>
-.pulse{fill:none;stroke-linecap:round;stroke-dasharray:8 120;stroke-dashoffset:8;opacity:0}
+.pulse{fill:none;stroke-linecap:round;stroke-dasharray:var(--d) 200;stroke-dashoffset:var(--d);opacity:0}
 .in{animation:in 10s linear infinite both}
 .to-agent{animation:toagent 10s linear infinite both}
 .out{animation:out 10s linear infinite both}
-.back{stroke-dasharray:4 120;stroke-dashoffset:4;animation:back 10s linear infinite both}
+.back{animation:back 10s linear infinite both}
 .lit{opacity:0;animation:lit 10s ease-in-out infinite both}
 .agent-lit{opacity:0;animation:agentlit 10s ease-in-out infinite both}
 .ring{opacity:0;transform-box:fill-box;transform-origin:center;animation:ring 10s ease-out infinite both}
@@ -14,10 +14,10 @@
 .src-lit{opacity:0;animation:src 10s ease-in-out infinite both}
 .ants{stroke-dasharray:5 7;animation:ants 1.4s linear infinite}
 .cursor{animation:blink 1.1s steps(1) infinite}
-@keyframes in{0%{stroke-dashoffset:8;opacity:0}1%{opacity:1}20%{stroke-dashoffset:-100;opacity:1}21%,100%{stroke-dashoffset:-100;opacity:0}}
-@keyframes toagent{0%,37%{stroke-dashoffset:8;opacity:0}38%{opacity:1}45%{stroke-dashoffset:-100;opacity:1}46%,100%{stroke-dashoffset:-100;opacity:0}}
-@keyframes out{0%,48%{stroke-dashoffset:8;opacity:0}49%{opacity:1}58%{stroke-dashoffset:-100;opacity:1}59%,100%{stroke-dashoffset:-100;opacity:0}}
-@keyframes back{0%,66%{stroke-dashoffset:4;opacity:0}67%{opacity:1}86%{stroke-dashoffset:-100;opacity:1}87%,100%{stroke-dashoffset:-100;opacity:0}}
+@keyframes in{0%{stroke-dashoffset:var(--d);opacity:0}1%{opacity:1}20%{stroke-dashoffset:-100;opacity:1}21%,100%{stroke-dashoffset:-100;opacity:0}}
+@keyframes toagent{0%,37%{stroke-dashoffset:var(--d);opacity:0}38%{opacity:1}45%{stroke-dashoffset:-100;opacity:1}46%,100%{stroke-dashoffset:-100;opacity:0}}
+@keyframes out{0%,48%{stroke-dashoffset:var(--d);opacity:0}49%{opacity:1}58%{stroke-dashoffset:-100;opacity:1}59%,100%{stroke-dashoffset:-100;opacity:0}}
+@keyframes back{0%,66%{stroke-dashoffset:var(--d);opacity:0}67%{opacity:1}86%{stroke-dashoffset:-100;opacity:1}87%,100%{stroke-dashoffset:-100;opacity:0}}
 @keyframes lit{0%,19%{opacity:0}25%{opacity:1}82%{opacity:1}92%,100%{opacity:0}}
 @keyframes agentlit{0%,44%{opacity:0}48%{opacity:1}84%{opacity:1}93%,100%{opacity:0}}
 @keyframes ring{0%,45%{opacity:0;transform:scale(1)}47%{opacity:.9;transform:scale(1)}60%{opacity:0;transform:scale(1.9)}100%{opacity:0}}
@@ -35,7 +35,7 @@
 <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#21262d"/></pattern>
 <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2dd4bf" stop-opacity="0.16"/><stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/></radialGradient>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1117" stop-opacity="1"/><stop offset=".45" stop-color="#0d1117" stop-opacity="0"/></linearGradient>
-<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="470"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#fbbf24"/></marker>
 <clipPath id="card"><rect x="4" y="4" width="1192" height="462" rx="18"/></clipPath>
 </defs>
@@ -54,27 +54,27 @@
 <text x="730" y="204" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" letter-spacing="2" fill="#8b949e">REASON</text>
 <text x="860" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" letter-spacing="2" fill="#8b949e">ACT</text>
 <path d="M200,230 C265,230 275,279.4 330,279.4" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse in" d="M200,230 C265,230 275,279.4 330,279.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="animation-delay:0.00s"/>
+<path class="pulse in" d="M200,230 C265,230 275,279.4 330,279.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="--d:15.51"/>
 <polyline stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" points="82,234 86,229 90,233 95,223 98,229 102,227"/>
 <circle class="src-lit" cx="92" cy="230" r="14" fill="none" stroke="#fbbf24" stroke-width="1.5" style="animation-delay:0.48s"/>
 <text x="112" y="234.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#e6edf3">telemetry</text>
 <path d="M200,270 C265,270 275,293.4 330,293.4" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse in" d="M200,270 C265,270 275,293.4 330,293.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="animation-delay:0.15s"/>
+<path class="pulse in" d="M200,270 C265,270 275,293.4 330,293.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="--d:16.56"/>
 <path stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M85,261 h9 l5,5 v13 h-14 z"/><path stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M94,261 v5 h5"/>
 <circle class="src-lit" cx="92" cy="270" r="14" fill="none" stroke="#fbbf24" stroke-width="1.5" style="animation-delay:0.36s"/>
 <text x="112" y="274.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#e6edf3">documents</text>
 <path d="M200,310 C265,310 275,307.4 330,307.4" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse in" d="M200,310 C265,310 275,307.4 330,307.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="animation-delay:0.30s"/>
+<path class="pulse in" d="M200,310 C265,310 275,307.4 330,307.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="--d:16.92"/>
 <ellipse stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" cx="92" cy="304" rx="7" ry="2.6"/><path stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M85,304 v11 a7,2.6 0 0 0 14,0 v-11"/><path stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M85,309.5 a7,2.6 0 0 0 14,0"/>
 <circle class="src-lit" cx="92" cy="310" r="14" fill="none" stroke="#fbbf24" stroke-width="1.5" style="animation-delay:0.24s"/>
 <text x="112" y="314.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#e6edf3">databases</text>
 <path d="M200,350 C265,350 275,321.4 330,321.4" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse in" d="M200,350 C265,350 275,321.4 330,321.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="animation-delay:0.45s"/>
+<path class="pulse in" d="M200,350 C265,350 275,321.4 330,321.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="--d:16.40"/>
 <text x="92" y="354.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#8b949e">{ }</text>
 <circle class="src-lit" cx="92" cy="350" r="14" fill="none" stroke="#fbbf24" stroke-width="1.5" style="animation-delay:0.12s"/>
 <text x="112" y="354.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#e6edf3">APIs</text>
 <path d="M200,390 C265,390 275,335.4 330,335.4" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse in" d="M200,390 C265,390 275,335.4 330,335.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="animation-delay:0.60s"/>
+<path class="pulse in" d="M200,390 C265,390 275,335.4 330,335.4" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="--d:15.25"/>
 <rect stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" x="84.5" y="382.5" width="6.5" height="6.5" rx="1.6"/><rect stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" x="84.5" y="391" width="6.5" height="6.5" rx="1.6"/><rect stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" x="93" y="382.5" width="6.5" height="6.5" rx="1.6"/><rect stroke="#8b949e" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" x="93" y="391" width="6.5" height="6.5" rx="1.6"/>
 <circle class="src-lit" cx="92" cy="390" r="14" fill="none" stroke="#fbbf24" stroke-width="1.5" style="animation-delay:0.00s"/>
 <text x="112" y="394.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#e6edf3">SaaS</text>
@@ -121,31 +121,31 @@
 <g class="lit" style="animation-delay:0.63s"><circle cx="600" cy="316" r="11" fill="#2dd4bf" fill-opacity="0.18"/><circle cx="600" cy="316" r="5.5" fill="#2dd4bf"/></g>
 <text x="350" y="378" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#8b949e">entities · relations · rules · actions</text>
 <path d="M640,306 H704" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse to-agent" d="M640,306 H704" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)"/>
+<path class="pulse to-agent" d="M640,306 H704" pathLength="100" stroke="#2dd4bf" stroke-width="3.5" filter="url(#glow)" style="--d:34.38"/>
 <polygon class="ring" points="730.0,282.0 750.8,294.0 750.8,318.0 730.0,330.0 709.2,318.0 709.2,294.0" fill="none" stroke="#2dd4bf" stroke-width="1.5"/>
 <polygon points="730.0,282.0 750.8,294.0 750.8,318.0 730.0,330.0 709.2,318.0 709.2,294.0" fill="#0d1117" stroke="#e6edf3" stroke-width="1.8"/>
 <polygon class="agent-lit" points="730.0,282.0 750.8,294.0 750.8,318.0 730.0,330.0 709.2,318.0 709.2,294.0" fill="#2dd4bf" fill-opacity="0.16" stroke="#2dd4bf" stroke-width="1.8"/>
 <text x="730" y="310.5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#e6edf3">AI</text>
 <text x="730" y="352" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8b949e">agents</text>
 <path d="M756,306 C805,306 810,240 860,240" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse out" d="M756,306 C805,306 810,240 860,240" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="animation-delay:0.0s"/>
+<path class="pulse out" d="M756,306 C805,306 810,240 860,240" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="--d:17.18"/>
 <rect x="860" y="222.0" width="200" height="36" rx="18" fill="#0d1117" stroke="#6e7681" stroke-width="1.4"/>
-<rect class="pill-lit" x="860" y="222.0" width="200" height="36" rx="18" fill="#2dd4bf" fill-opacity="0.14" stroke="#2dd4bf" stroke-width="1.6" style="animation-delay:0.0s"/>
+<rect class="pill-lit" x="860" y="222.0" width="200" height="36" rx="18" fill="#2dd4bf" fill-opacity="0.14" stroke="#2dd4bf" stroke-width="1.6"/>
 <circle cx="880" cy="240" r="4" fill="#2dd4bf"/>
 <text x="894" y="244.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#e6edf3" font-weight="400">insight</text>
 <path d="M756,306 C805,306 810,306 860,306" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse out" d="M756,306 C805,306 810,306 860,306" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="animation-delay:0.3s"/>
+<path class="pulse out" d="M756,306 C805,306 810,306 860,306" pathLength="100" stroke="#2dd4bf" stroke-width="3" filter="url(#glow)" style="--d:21.15"/>
 <rect x="860" y="288.0" width="200" height="36" rx="18" fill="#0d1117" stroke="#6e7681" stroke-width="1.4"/>
-<rect class="pill-lit" x="860" y="288.0" width="200" height="36" rx="18" fill="#2dd4bf" fill-opacity="0.14" stroke="#2dd4bf" stroke-width="1.6" style="animation-delay:0.3s"/>
+<rect class="pill-lit" x="860" y="288.0" width="200" height="36" rx="18" fill="#2dd4bf" fill-opacity="0.14" stroke="#2dd4bf" stroke-width="1.6"/>
 <circle cx="880" cy="306" r="4" fill="#2dd4bf"/>
 <text x="894" y="310.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#e6edf3" font-weight="400">recommendation</text>
 <path d="M756,306 C805,306 810,372 860,372" fill="none" stroke="#30363d" stroke-width="1.5"/>
-<path class="pulse out" d="M756,306 C805,306 810,372 860,372" pathLength="100" stroke="#fbbf24" stroke-width="3" filter="url(#glow)" style="animation-delay:0.6s"/>
+<path class="pulse out" d="M756,306 C805,306 810,372 860,372" pathLength="100" stroke="#fbbf24" stroke-width="3" filter="url(#glow)" style="--d:17.18"/>
 <rect x="860" y="354.0" width="200" height="36" rx="18" fill="#0d1117" stroke="#fbbf24" stroke-width="1.4"/>
-<rect class="pill-lit" x="860" y="354.0" width="200" height="36" rx="18" fill="#fbbf24" fill-opacity="0.14" stroke="#fbbf24" stroke-width="1.6" style="animation-delay:0.6s"/>
+<rect class="pill-lit" x="860" y="354.0" width="200" height="36" rx="18" fill="#fbbf24" fill-opacity="0.14" stroke="#fbbf24" stroke-width="1.6"/>
 <circle cx="880" cy="372" r="4" fill="#fbbf24"/>
 <text x="894" y="376.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#fbbf24" font-weight="600">action</text>
 <path class="ants" d="M1060,372 C1110,372 1110,436 1060,436 H120 C92,436 92,436 92,408" fill="none" stroke="#fbbf24" stroke-opacity="0.55" stroke-width="1.4" marker-end="url(#arrow)"/>
-<path class="pulse back" d="M1060,372 C1110,372 1110,436 1060,436 H120 C92,436 92,436 92,408" pathLength="100" stroke="#fbbf24" stroke-width="3" filter="url(#glow)"/>
+<path class="pulse back" d="M1060,372 C1110,372 1110,436 1060,436 H120 C92,436 92,436 92,408" pathLength="100" stroke="#fbbf24" stroke-width="3" filter="url(#glow)" style="--d:2.00"/>
 <text x="600" y="428" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" letter-spacing="1" fill="#fbbf24">governed write-back · audited</text>
 </svg>
