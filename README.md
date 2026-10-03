@@ -1,21 +1,14 @@
-## About
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg">
+  <img alt="Zeyu Chen: building the enterprise context layer, where AI goes from answers to governed action. Data sources flow into an ontology, AI agents turn it into insights, recommendations and actions, and actions are written back under governance." src="./assets/hero-light.svg" width="100%">
+</picture>
 
-Full-stack AI Engineer with 3 years of experience in AI, data, and full-stack development. AWS certified (Solutions Architect, Data Engineer), delivering award-winning platforms for government, education, and enterprise. I combine AI expertise in LLM applications, RAG systems, and AI agents with modern full-stack development, backed by startup CTO experience leading cross-functional teams to ship end-to-end solutions.
+I'm an AI & Data Engineer at Grosvenor Engineering Group in Sydney, building the enterprise context layer.
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-zeyuchen.dev-7edad2?style=flat)](https://zeyuchen.dev)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Zeyu%20Chen-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/zeyuchen-zach)
+It connects every data source in the business, from real-time telemetry and operational databases to documents, files, APIs and SaaS systems, through a shared ontology that models not only what exists but how the business makes decisions.
 
-## Skills
+- **Connect**: one ontology across assets, sensors, documents, people and work.
+- **Reason**: AI agents grounded in that full context, not one system at a time.
+- **Act**: insights become recommendations, and recommendations become controlled actions. Every action is permissioned, auditable and written back to the systems where the work happens.
 
-| Category | Skills |
-| --- | --- |
-| AI & Frameworks | ![LangChain](https://img.shields.io/badge/-LangChain-1C3C3C?style=flat) ![LangGraph](https://img.shields.io/badge/-LangGraph-1C3C3C?style=flat) ![LangSmith](https://img.shields.io/badge/-LangSmith-4C6EF5?style=flat) ![Mastra](https://img.shields.io/badge/-Mastra-000000?style=flat) ![MCP](https://img.shields.io/badge/-MCP-000000?style=flat) ![OpenAI](https://img.shields.io/badge/-OpenAI-412991?style=flat) ![Gemini](https://img.shields.io/badge/-Gemini-8E75B2?style=flat) ![Claude](https://img.shields.io/badge/-Claude-D4A574?style=flat) |
-| ML & Data | ![PyTorch](https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat) ![Scikit-Learn](https://img.shields.io/badge/-Scikit%20Learn-F7931E?style=flat) ![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat) ![NumPy](https://img.shields.io/badge/-NumPy-013243?style=flat) |
-| Languages | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat) ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat) ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat) ![SQL](https://img.shields.io/badge/-SQL-4479A1?style=flat) |
-| Frontend | ![React](https://img.shields.io/badge/-React-61DAFB?style=flat) ![Next.js](https://img.shields.io/badge/-Next.js-000000?style=flat) ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-06B6D4?style=flat) ![Zustand](https://img.shields.io/badge/-Zustand-2D4356?style=flat) ![Vitest](https://img.shields.io/badge/-Vitest-6E9F18?style=flat) ![Playwright](https://img.shields.io/badge/-Playwright-2EAD33?style=flat) |
-| Backend | ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat) ![FastAPI](https://img.shields.io/badge/-FastAPI-009688?style=flat) ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=flat) ![REST API](https://img.shields.io/badge/-REST%20API-009688?style=flat) ![Microservices](https://img.shields.io/badge/-Microservices-2E86AB?style=flat) ![Serverless](https://img.shields.io/badge/-Serverless-FD5750?style=flat) |
-| Databases | ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat) ![DynamoDB](https://img.shields.io/badge/-DynamoDB-4053D6?style=flat) ![Redis](https://img.shields.io/badge/-Redis-DC382D?style=flat) ![Neptune](https://img.shields.io/badge/-Neptune-4581C3?style=flat) ![Neo4j](https://img.shields.io/badge/-Neo4j-4581C3?style=flat) ![Pinecone](https://img.shields.io/badge/-Pinecone-00D4AA?style=flat) ![Supabase](https://img.shields.io/badge/-Supabase-3FCF8E?style=flat) |
-| Cloud & DevOps | ![AWS](https://img.shields.io/badge/-AWS-232F3E?style=flat) ![Azure](https://img.shields.io/badge/-Azure-0078D4?style=flat) ![Vercel](https://img.shields.io/badge/-Vercel-000000?style=flat) ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat) ![Terraform](https://img.shields.io/badge/-Terraform-7B42BC?style=flat) ![Git](https://img.shields.io/badge/-Git-F05032?style=flat) ![GitHub Actions](https://img.shields.io/badge/-GitHub%20Actions-2088FF?style=flat) ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat) |
-| Certifications | ![AWS SAA](https://img.shields.io/badge/-AWS%20Solutions%20Architect-232F3E?style=flat) ![AWS DEA](https://img.shields.io/badge/-AWS%20Data%20Engineer-232F3E?style=flat) ![Google DA](https://img.shields.io/badge/-Google%20Data%20Analytics-4285F4?style=flat) |
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=zeyu-chen&layout=compact&theme=transparent)
+[zeyuchen.dev](https://zeyuchen.dev) · [LinkedIn](https://linkedin.com/in/zeyuchen-zach)
