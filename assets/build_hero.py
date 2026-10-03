@@ -195,9 +195,9 @@ def build(t):
 
     # Column captions
     cap = f'font-family="{MONO}" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="{t["teal"]}"'
-    a(f'<text x="80" y="{SRC_Y[0]-26}" {cap}>SOURCES</text>')
+    a(f'<text x="132" y="{SRC_Y[0]-26}" text-anchor="middle" {cap}>SOURCES</text>')  # centred over icon + label
     a(f'<text x="{AGENT[0]}" y="{SRC_Y[0]-26}" text-anchor="middle" {cap}>REASON</text>')
-    a(f'<text x="{PILL_X}" y="{SRC_Y[0]-26}" {cap}>ACT</text>')
+    a(f'<text x="{PILL_X + PILL_W / 2}" y="{SRC_Y[0]-26}" text-anchor="middle" {cap}>ACT</text>')
 
     # Sources: icon, label, base edge, pulse, write-back highlight
     for i, (name, y) in enumerate(zip(SOURCES, SRC_Y)):

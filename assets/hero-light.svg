@@ -50,9 +50,9 @@
 <text x="1144" y="62" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" letter-spacing="2" fill="#656d76">AI &amp; DATA ENGINEER · SYDNEY</text>
 <text x="56" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#1f2328">Building the enterprise context layer,</text>
 <text x="56" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#656d76">where AI goes from answers to <tspan fill="#d97706" font-weight="600">governed action.</tspan><tspan class="cursor" fill="#d97706" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"> ▍</tspan></text>
-<text x="80" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#0d9488">SOURCES</text>
+<text x="132" y="204" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#0d9488">SOURCES</text>
 <text x="730" y="204" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#0d9488">REASON</text>
-<text x="860" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#0d9488">ACT</text>
+<text x="960.0" y="204" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#0d9488">ACT</text>
 <path d="M200,230 C265,230 275,279.4 330,279.4" fill="none" stroke="#d0d7de" stroke-width="1.5"/>
 <path class="pulse in" d="M200,230 C265,230 275,279.4 330,279.4" pathLength="100" stroke="#0d9488" stroke-width="3" filter="url(#glow)" style="--d:15.51"/>
 <polyline stroke="#656d76" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" points="82,234 86,229 90,233 95,223 98,229 102,227"/>
