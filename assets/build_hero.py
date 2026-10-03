@@ -37,6 +37,8 @@ OUTCOMES = ["insight", "recommendation", "action"]
 OUT_Y = [MID - 66, MID, MID + 66]
 PILL_X, PILL_W, PILL_H = 860, 200, 36
 LOOP_Y = 436
+BOX = (330, 192 + DY, 310, 176)  # context layer box: x, y, width, height
+RIPPLE_PX = 14  # how far an activation ripple grows past a box edge
 PULSE_PX = 22  # visible length of a travelling pulse, in pixels
 
 
@@ -83,6 +85,12 @@ def keyframes():
         return (f"@keyframes {name}{{{{0%,{pct(on - 0.1)}{{{{opacity:0}}}}{pct(on + 0.4)}{{{{opacity:1}}}}"
                 f"{pct(off)}{{{{opacity:1}}}}{pct(off + 0.9)},100%{{{{opacity:0}}}}}}}}")
 
+    def ripple(name, at, sx, sy=None):
+        sy = sx if sy is None else sy
+        return (f"@keyframes {name}{{{{0%,{pct(at - 0.1)}{{{{opacity:0;transform:scale(1)}}}}"
+                f"{pct(at + 0.1)}{{{{opacity:.9;transform:scale(1)}}}}"
+                f"{pct(at + 1.4)}{{{{opacity:0;transform:scale({sx:.3f},{sy:.3f})}}}}100%{{{{opacity:0}}}}}}}}")
+
     t_in = 0.1
     t_ag = t_in + d_in + 1.0          # let the ontology light up first
     t_out = t_ag + d_ag + 0.4         # agent pulses, then fans out
@@ -96,9 +104,10 @@ def keyframes():
         glow("lit", t_in + d_in, 8.2),
         glow("agentlit", t_ag + d_ag, 8.4),
         glow("pill", t_out + d_out, 8.6),
-        f"@keyframes ring{{{{0%,{pct(t_ag + d_ag - 0.1)}{{{{opacity:0;transform:scale(1)}}}}"
-        f"{pct(t_ag + d_ag + 0.1)}{{{{opacity:.9;transform:scale(1)}}}}"
-        f"{pct(t_ag + d_ag + 1.4)}{{{{opacity:0;transform:scale(1.9)}}}}100%{{{{opacity:0}}}}}}}}",
+        glow("boxlit", t_in + d_in, 8.2),
+        ripple("ring", t_ag + d_ag, 1.9),
+        ripple("ringbox", t_in + d_in, 1 + 2 * RIPPLE_PX / BOX[2], 1 + 2 * RIPPLE_PX / BOX[3]),
+        ripple("ringpill", t_out + d_out, 1 + 2 * RIPPLE_PX / PILL_W, 1 + 2 * RIPPLE_PX / PILL_H),
         f"@keyframes src{{{{0%,{pct(t_src - 0.1)}{{{{opacity:0}}}}{pct(t_src + 0.2)}{{{{opacity:1}}}}"
         f"{pct(t_src + 1.2)},100%{{{{opacity:0}}}}}}}}",
     ]
@@ -151,6 +160,10 @@ def build(t):
 .agent-lit{{opacity:0;animation:agentlit 10s ease-in-out infinite both}}
 .ring{{opacity:0;transform-box:fill-box;transform-origin:center;animation:ring 10s ease-out infinite both}}
 .pill-lit{{opacity:0;animation:pill 10s ease-in-out infinite both}}
+.box-lit{{opacity:0;animation:boxlit 10s ease-in-out infinite both}}
+.ring-box,.ring-pill{{opacity:0;transform-box:fill-box;transform-origin:center}}
+.ring-box{{animation:ringbox 10s ease-out infinite both}}
+.ring-pill{{animation:ringpill 10s ease-out infinite both}}
 .src-lit{{opacity:0;animation:src 10s ease-in-out infinite both}}
 .ants{{stroke-dasharray:5 7;animation:ants 1.4s linear infinite}}
 .cursor{{animation:blink 1.1s steps(1) infinite}}
@@ -160,7 +173,7 @@ def build(t):
 @media (prefers-reduced-motion:reduce){{
   *{{animation:none!important}}
   .pulse{{opacity:0}}
-  .lit,.agent-lit,.pill-lit{{opacity:1}}
+  .lit,.agent-lit,.pill-lit,.box-lit{{opacity:1}}
 }}
 </style>""")
 
@@ -212,9 +225,11 @@ def build(t):
         a(f'<text x="112" y="{y+4.5}" font-family="{MONO}" font-size="13" fill="{t["text"]}">{name}</text>')
 
     # Context layer box with ontology graph
-    bx, by, bw, bh = 330, 192 + DY, 310, 176
-    a(f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="14" fill="{t["bg"]}" fill-opacity="0.6" '
-      f'stroke="{t["teal"]}" stroke-opacity="0.55" stroke-width="1.5"/>')
+    bx, by, bw, bh = BOX
+    box = f'x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="14"'
+    a(f'<rect class="ring-box" {box} fill="none" stroke="{t["teal"]}" stroke-width="1.5" vector-effect="non-scaling-stroke"/>')
+    a(f'<rect {box} fill="{t["bg"]}" fill-opacity="0.6" stroke="{t["stroke"]}" stroke-width="1.5"/>')
+    a(f'<rect class="box-lit" {box} fill="{t["teal"]}" fill-opacity="0.05" stroke="{t["teal"]}" stroke-width="1.8"/>')
     a(f'<text x="{bx+20}" y="{by+24}" {cap}>CONTEXT LAYER</text>')
     a(f'<text x="{bx+bw-20}" y="{by+24}" text-anchor="end" font-family="{MONO}" font-size="10.5" '
       f'fill="{t["teal"]}">ontology</text>')
@@ -257,6 +272,8 @@ def build(t):
         a(f'<path class="pulse out" d="{d}" pathLength="100" stroke="{c}" stroke-width="3" '
           f'filter="url(#glow)" style="{dash(cubic_len((ax+26, ay), (ax+75, ay), (ax+80, y), (PILL_X, y)))}"/>')
         px, py = PILL_X, y - PILL_H / 2
+        a(f'<rect class="ring-pill" x="{px}" y="{py}" width="{PILL_W}" height="{PILL_H}" rx="18" fill="none" '
+          f'stroke="{c}" stroke-width="1.5" vector-effect="non-scaling-stroke"/>')
         a(f'<rect x="{px}" y="{py}" width="{PILL_W}" height="{PILL_H}" rx="18" fill="{t["node"]}" '
           f'stroke="{t["stroke"]}" stroke-width="1.4"/>')
         a(f'<rect class="pill-lit" x="{px}" y="{py}" width="{PILL_W}" height="{PILL_H}" rx="18" '
