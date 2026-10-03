@@ -258,12 +258,12 @@ def build(t):
           f'filter="url(#glow)" style="{dash(cubic_len((ax+26, ay), (ax+75, ay), (ax+80, y), (PILL_X, y)))}"/>')
         px, py = PILL_X, y - PILL_H / 2
         a(f'<rect x="{px}" y="{py}" width="{PILL_W}" height="{PILL_H}" rx="18" fill="{t["node"]}" '
-          f'stroke="{c if is_action else t["stroke"]}" stroke-width="1.4"/>')
+          f'stroke="{t["stroke"]}" stroke-width="1.4"/>')
         a(f'<rect class="pill-lit" x="{px}" y="{py}" width="{PILL_W}" height="{PILL_H}" rx="18" '
           f'fill="{c}" fill-opacity="0.14" stroke="{c}" stroke-width="1.6"/>')
         a(f'<circle cx="{px+20}" cy="{y}" r="4" fill="{c}"/>')
         a(f'<text x="{px+34}" y="{y+4.5}" font-family="{MONO}" font-size="13" '
-          f'fill="{t["amber"] if is_action else t["text"]}" font-weight="{600 if is_action else 400}">{name}</text>')
+          f'fill="{t["text"]}">{name}</text>')
 
     # Governed write-back loop: action -> back to the sources
     ry = OUT_Y[2]
