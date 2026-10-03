@@ -39,6 +39,7 @@ PILL_X, PILL_W, PILL_H = 860, 200, 36
 LOOP_Y = 436
 BOX = (330, 192 + DY, 310, 176)  # context layer box: x, y, width, height
 RIPPLE_PX = 14  # how far an activation ripple grows past a box edge
+SRC_ROW = (128, 30)  # width, height of a source row's activation box
 PULSE_PX = 22  # visible length of a travelling pulse, in pixels
 
 
@@ -108,8 +109,9 @@ def keyframes():
         ripple("ring", t_ag + d_ag, 1.9),
         ripple("ringbox", t_in + d_in, 1 + 2 * RIPPLE_PX / BOX[2], 1 + 2 * RIPPLE_PX / BOX[3]),
         ripple("ringpill", t_out + d_out, 1 + 2 * RIPPLE_PX / PILL_W, 1 + 2 * RIPPLE_PX / PILL_H),
-        f"@keyframes src{{{{0%,{pct(t_src - 0.1)}{{{{opacity:0}}}}{pct(t_src + 0.2)}{{{{opacity:1}}}}"
-        f"{pct(t_src + 1.2)},100%{{{{opacity:0}}}}}}}}",
+        glow("src", t_src, 8.8),
+        # rows sit 40px apart, so keep the vertical ripple small enough not to collide
+        ripple("ringsrc", t_src, 1 + 2 * RIPPLE_PX / SRC_ROW[0], 1 + 2 * 4 / SRC_ROW[1]),
     ]
     # The result is spliced into an f-string, so collapse the doubled braces here.
     return "\n".join(rules).replace("{{", "{").replace("}}", "}")
@@ -165,6 +167,7 @@ def build(t):
 .ring-box{{animation:ringbox 10s ease-out infinite both}}
 .ring-pill{{animation:ringpill 10s ease-out infinite both}}
 .src-lit{{opacity:0;animation:src 10s ease-in-out infinite both}}
+.ring-src{{opacity:0;transform-box:fill-box;transform-origin:center;animation:ringsrc 10s ease-out infinite both}}
 .ants{{stroke-dasharray:5 7;animation:ants 1.4s linear infinite}}
 .cursor{{animation:blink 1.1s steps(1) infinite}}
 {keyframes()}
@@ -173,7 +176,7 @@ def build(t):
 @media (prefers-reduced-motion:reduce){{
   *{{animation:none!important}}
   .pulse{{opacity:0}}
-  .lit,.agent-lit,.pill-lit,.box-lit{{opacity:1}}
+  .lit,.agent-lit,.pill-lit,.box-lit,.src-lit{{opacity:1}}
 }}
 </style>""")
 
@@ -219,9 +222,10 @@ def build(t):
         a(f'<path d="{d}" fill="none" stroke="{t["faint"]}" stroke-width="1.5"/>')
         a(f'<path class="pulse in" d="{d}" pathLength="100" stroke="{t["teal"]}" stroke-width="3" '
           f'filter="url(#glow)" style="{dash(cubic_len((200, y), (265, y), (275, ty), (330, ty)))}"/>')
+        row = f'x="70" y="{y - SRC_ROW[1] / 2}" width="{SRC_ROW[0]}" height="{SRC_ROW[1]}" rx="{SRC_ROW[1] / 2}"'
+        a(f'<rect class="ring-src" {row} fill="none" stroke="{t["amber"]}" stroke-width="1.5" vector-effect="non-scaling-stroke"/>')
+        a(f'<rect class="src-lit" {row} fill="{t["amber"]}" fill-opacity="0.14" stroke="{t["amber"]}" stroke-width="1.6"/>')
         a(icon(name, y, t["muted"]))
-        a(f'<circle class="src-lit" cx="92" cy="{y}" r="14" fill="none" stroke="{t["amber"]}" '
-          f'stroke-width="1.5" style="animation-delay:{0.12*(4-i):.2f}s"/>')
         a(f'<text x="112" y="{y+4.5}" font-family="{MONO}" font-size="13" fill="{t["text"]}">{name}</text>')
 
     # Context layer box with ontology graph
