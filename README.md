@@ -10,5 +10,3 @@ It connects every data source in the business, from real-time telemetry and oper
 - **Connect**: one ontology across assets, sensors, documents, people and work.
 - **Reason**: AI agents grounded in that full context, not one system at a time.
 - **Act**: insights become recommendations, and recommendations become controlled actions. Every action is permissioned, auditable and written back to the systems where the work happens.
-
-[zeyuchen.dev](https://zeyuchen.dev) · [LinkedIn](https://linkedin.com/in/zeyuchen-zach)
