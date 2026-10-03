@@ -51,6 +51,61 @@ def dash(length):
     return f"--d:{100 * PULSE_PX / length:.2f}"
 
 
+CYCLE = 10.0      # seconds per loop
+SPEED = 160.0     # px/s, shared by every forward pulse so they all travel at the same pace
+BACK_DUR = 1.3    # seconds for the write-back pulse
+
+
+def _src_len(y):
+    ty = MID + (y - MID) * 0.35
+    return cubic_len((200, y), (265, y), (275, ty), (330, ty))
+
+
+def _out_len(y):
+    ax, ay = AGENT
+    return cubic_len((ax + 26, ay), (ax + 75, ay), (ax + 80, y), (PILL_X, y))
+
+
+def keyframes():
+    """Build the 10s timeline so forward pulses share one speed and stages chain on arrival."""
+    pct = lambda sec: f"{100 * sec / CYCLE:.2f}%"
+    travel = lambda length: (length + PULSE_PX) / SPEED  # head moves the path plus the dash
+    d_in = travel(sum(map(_src_len, SRC_Y)) / len(SRC_Y))
+    d_ag = travel(AGENT[0] - 26 - 640)
+    d_out = travel(sum(map(_out_len, OUT_Y)) / len(OUT_Y))
+
+    def move(name, t0, dur):
+        return (f"@keyframes {name}{{{{0%,{pct(t0)}{{{{stroke-dashoffset:var(--d);opacity:0}}}}"
+                f"{pct(t0 + 0.05)}{{{{opacity:1}}}}{pct(t0 + dur)}{{{{stroke-dashoffset:-100;opacity:1}}}}"
+                f"{pct(t0 + dur + 0.08)},100%{{{{stroke-dashoffset:-100;opacity:0}}}}}}}}")
+
+    def glow(name, on, off):
+        return (f"@keyframes {name}{{{{0%,{pct(on - 0.1)}{{{{opacity:0}}}}{pct(on + 0.4)}{{{{opacity:1}}}}"
+                f"{pct(off)}{{{{opacity:1}}}}{pct(off + 0.9)},100%{{{{opacity:0}}}}}}}}")
+
+    t_in = 0.1
+    t_ag = t_in + d_in + 1.0          # let the ontology light up first
+    t_out = t_ag + d_ag + 0.4         # agent pulses, then fans out
+    t_back = t_out + d_out + 1.0      # outcomes settle, then the action is written back
+    t_src = t_back + BACK_DUR
+    rules = [
+        move("in", t_in, d_in),
+        move("toagent", t_ag, d_ag),
+        move("out", t_out, d_out),
+        move("back", t_back, BACK_DUR),
+        glow("lit", t_in + d_in, 8.2),
+        glow("agentlit", t_ag + d_ag, 8.4),
+        glow("pill", t_out + d_out, 8.6),
+        f"@keyframes ring{{{{0%,{pct(t_ag + d_ag - 0.1)}{{{{opacity:0;transform:scale(1)}}}}"
+        f"{pct(t_ag + d_ag + 0.1)}{{{{opacity:.9;transform:scale(1)}}}}"
+        f"{pct(t_ag + d_ag + 1.4)}{{{{opacity:0;transform:scale(1.9)}}}}100%{{{{opacity:0}}}}}}}}",
+        f"@keyframes src{{{{0%,{pct(t_src - 0.1)}{{{{opacity:0}}}}{pct(t_src + 0.2)}{{{{opacity:1}}}}"
+        f"{pct(t_src + 1.2)},100%{{{{opacity:0}}}}}}}}",
+    ]
+    # The result is spliced into an f-string, so collapse the doubled braces here.
+    return "\n".join(rules).replace("{{", "{").replace("}}", "}")
+
+
 def icon(name, y, c):
     """Small glyph for each data source, centred on x=92."""
     s = f'stroke="{c}" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"'
@@ -99,15 +154,7 @@ def build(t):
 .src-lit{{opacity:0;animation:src 10s ease-in-out infinite both}}
 .ants{{stroke-dasharray:5 7;animation:ants 1.4s linear infinite}}
 .cursor{{animation:blink 1.1s steps(1) infinite}}
-@keyframes in{{0%{{stroke-dashoffset:var(--d);opacity:0}}1%{{opacity:1}}20%{{stroke-dashoffset:-100;opacity:1}}21%,100%{{stroke-dashoffset:-100;opacity:0}}}}
-@keyframes toagent{{0%,37%{{stroke-dashoffset:var(--d);opacity:0}}38%{{opacity:1}}45%{{stroke-dashoffset:-100;opacity:1}}46%,100%{{stroke-dashoffset:-100;opacity:0}}}}
-@keyframes out{{0%,48%{{stroke-dashoffset:var(--d);opacity:0}}49%{{opacity:1}}58%{{stroke-dashoffset:-100;opacity:1}}59%,100%{{stroke-dashoffset:-100;opacity:0}}}}
-@keyframes back{{0%,66%{{stroke-dashoffset:var(--d);opacity:0}}67%{{opacity:1}}76%{{stroke-dashoffset:-100;opacity:1}}77%,100%{{stroke-dashoffset:-100;opacity:0}}}}
-@keyframes lit{{0%,19%{{opacity:0}}25%{{opacity:1}}82%{{opacity:1}}92%,100%{{opacity:0}}}}
-@keyframes agentlit{{0%,44%{{opacity:0}}48%{{opacity:1}}84%{{opacity:1}}93%,100%{{opacity:0}}}}
-@keyframes ring{{0%,45%{{opacity:0;transform:scale(1)}}47%{{opacity:.9;transform:scale(1)}}60%{{opacity:0;transform:scale(1.9)}}100%{{opacity:0}}}}
-@keyframes pill{{0%,56%{{opacity:0}}60%{{opacity:1}}86%{{opacity:1}}94%,100%{{opacity:0}}}}
-@keyframes src{{0%,75%{{opacity:0}}78%{{opacity:1}}88%,100%{{opacity:0}}}}
+{keyframes()}
 @keyframes ants{{to{{stroke-dashoffset:-24}}}}
 @keyframes blink{{0%{{opacity:1}}50%{{opacity:0}}}}
 @media (prefers-reduced-motion:reduce){{
