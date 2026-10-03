@@ -53,7 +53,7 @@ def dash(length):
 
 CYCLE = 10.0      # seconds per loop
 SPEED = 160.0     # px/s, shared by every forward pulse so they all travel at the same pace
-BACK_DUR = 1.3    # seconds for the write-back pulse
+BACK_DUR = 1.1    # seconds for the write-back pulse
 
 
 def _src_len(y):
